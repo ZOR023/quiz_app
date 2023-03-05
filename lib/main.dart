@@ -6,11 +6,21 @@ void main() {
 
 // void main() => runApp(MyApp()); shorthand for main func
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
   var questionsIndex = 0;
   void answerQuestions() {
-    questionsIndex = questionsIndex + 1;
-    print("Answer");
+    setState(() {
+      questionsIndex = questionsIndex + 1;
+    });
+    print(questionsIndex);
   }
 
   @override
@@ -24,8 +34,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Column(children: [
           Text(questions[questionsIndex]),
-          ElevatedButton(
-              onPressed: () => print("Answer 1"), child: Text('Answer 1')),
+          ElevatedButton(onPressed: answerQuestions, child: Text('Answer 1')),
           ElevatedButton(
               onPressed: () => print("Answer 2"), child: Text('Answer 2')),
           ElevatedButton(
