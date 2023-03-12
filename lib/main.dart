@@ -41,11 +41,13 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         body: Column(children: [
-          Question(questions[_questionsIndex]['questionText'],),
-          questions[_questionsIndex]['answer'].map((answer){})
-          Answer(_answerQuestions),
-          Answer(_answerQuestions),
-          Answer(_answerQuestions),
+          Question(
+            questions[_questionsIndex]['questionText'],
+          ),
+          ...(questions[_questionsIndex]['answer'] as List<String>)
+              .map((answer) {
+            return Answer(_answerQuestions, answer);
+          }).toList()
           // ElevatedButton(
           //     onPressed: () => print("Answer 4"), child: Text('Answer 4')),
         ]),

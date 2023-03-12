@@ -3,7 +3,8 @@ import './main.dart';
 
 class Answer extends StatelessWidget {
   final Function answerFun;
-  Answer(this.answerFun);
+  final String answer;
+  Answer(this.answerFun, this.answer);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,7 +12,7 @@ class Answer extends StatelessWidget {
       margin: EdgeInsets.all(5),
       child: ElevatedButton(
         onPressed: answerFun,
-        child: Text('Answer 1'),
+        child: Text(answer),
         style: ButtonStyle(
             foregroundColor: MaterialStatePropertyAll(Colors.black45),
             backgroundColor: MaterialStatePropertyAll(Colors.cyanAccent)),
