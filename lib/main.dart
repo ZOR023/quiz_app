@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
     });
     print(_questionsIndex);
     if (_questionsIndex < questions.length) {
-      print('we have more questions')
+      print('we have more questions');
     }
   }
 
@@ -42,17 +42,19 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Column(children: [
-          Question(
-            questions[_questionsIndex]['questionText'],
-          ),
-          ...(questions[_questionsIndex]['answer'] as List<String>)
-              .map((answer) {
-            return Answer(_answerQuestions, answer);
-          }).toList()
-          // ElevatedButton(
-          //     onPressed: () => print("Answer 4"), child: Text('Answer 4')),
-        ]),
+        body: _questionsIndex < questions.length
+            ? Column(children: [
+                Question(
+                  questions[_questionsIndex]['questionText'],
+                ),
+                ...(questions[_questionsIndex]['answer'] as List<String>)
+                    .map((answer) {
+                  return Answer(_answerQuestions, answer);
+                }).toList()
+                // ElevatedButton(
+                //     onPressed: () => print("Answer 4"), child: Text('Answer 4')),
+              ])
+            : Center(child: Text("no more questions")),
         appBar: AppBar(
           title: Text('App Title'),
         ),
